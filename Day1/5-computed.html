@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{fullname}}</h2>
+<h2>_____________________________________________________</h2>
+<h2>{{totalprice}}</h2>
+  </div>
+
+  <script>
+    var vm = new Vue({
+          el: '#app',
+          data: {
+            firstname: 'kobe',
+            lastname: 'bryant',
+            books: 
+              [
+                {name:'111',price:12,count:1},
+                {name:'222',price:12,count:2},
+                {name:'333',price:12,count:3},
+              ]
+            },
+            methods: {},
+            computed: {
+              fullname() {
+                return this.firstname + ' ' + this.lastname
+              },
+              // 复杂的使用
+              totalprice(){
+                return this.books.reduce((total,b)=>{return total+b.price*b.count})
+              }
+            }
+          });
+  </script>
+</body>
+
+</html>

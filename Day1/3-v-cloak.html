@@ -8,24 +8,23 @@
   <title>Document</title>
   <script src="../js/vue.js"></script>
 </head>
-
+<style>
+  [cloak]{
+    display: none;
+  }
+</style>
 <body>
-  <div id="app">
-    <!-- 渲染组件和元素一次，随后的渲染，使用此命令的元素/组件其所有的子节点，都会被当做静态内容并跳过，用于优化更新性能 -->
-    <p v-once> {{msg}}</p>
-    <p>{{msg}}</p>
+  <div id="app" v-cloak>
+    <!-- v-cloak指令设置样式，这些样式会在Vue实例编译结束时，从绑定的html元素上移除 -->
 
-
-    <p>
-      <input type="text" name="te" id="te" v-model="msg">
-    </p>
+  {{context}}
   </div>
 
   <script>
     var vm = new Vue({
       el: '#app',
       data: {
-        msg:'hello'
+        context:'123123213'
       },
       methods: {},
       computed: {}

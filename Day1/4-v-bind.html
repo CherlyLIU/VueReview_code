@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+  <style>
+    .active {
+      color: red;
+      font-size: 20px;
+      font-weight: bolder;
+    }
+
+    .line {
+      color: aqua;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <p>v-bind绑定class的三种方法</p>
+    __________布尔值 的绑定方式<br>
+    <span :class="{'class-a':isA,'class-b':isB}"></span>
+    <!-- v-bind 用于绑定一个或多个属性值， -->
+    <!-- 或者像另一个组件传递props值 -->
+    <h2>------------------------------------------------</h2>
+    <!-- ---对象语法绑定---  -->
+    <!-- ①直接通过{}绑定一个类-->
+    <h2 class="title" :class="{ active:isActive}">hello world</h2>
+    <!-- ②通过判断传入多个值 -->
+    <h2 :class="{active:isActive,line:isLine}"> hello world</h2>
+    <!-- ③和普通类同时存在，但不冲突 -->
+    <h2 class="title" :class="{active:isActive,line:isLine}">helloWorld</h2>
+    <!-- ④如果过于复杂，可以放在一个method或者computed中 class -->
+    <div :class="classes">
+      helloworld
+    </div>
+    <button v-on:click="btnClick()">点我一下</button>
+    <h2>------------------------------------------------</h2>
+    <!-- 使用数组进行绑定 -->
+    <h2 :class="['active']">
+      {{message}}
+    </h2>
+
+    <!-- 数组传入多个值 -->
+    <h2 :class="['active','line']">
+      
+    </h2>
+    <!-- 和普通的类同时存在，但是不冲突 -->
+    <h2 :class="['active','line']" class="title">
+      
+    </h2>
+  <!-- 如果有判断等的复杂需求 ,可以放在method和computed中 -->
+  <h2 :class="classes" class="title">
+      
+  </h2>
+  <h2>------------------------------------------------</h2>
+  <!-- 绑定样式 -->
+  <h2></h2>
+    <!-- <a v-bind:href="link">官网</a>
+    <img v-bind:src="logourl" alt=""> -->
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        message: 'nice',
+        logourl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3128779142,3422740795&fm=26&gp=0.jpg',
+        link: 'https://vuejs.org/',
+        isA: false,
+        isB: true,
+        isActive: true,
+        isLine: false
+      },
+      methods: {
+        btnClick: function () {
+          // 及时响应
+          this.isActive = !this.isActive
+        },
+        getClasses: function () {
+          // return {
+          //   active: this.isActive,
+          //   line: this.isLine
+          // }
+          return [this.isActive,this.line]
+        }
+      },
+      computed: {}
+    });
+  </script>
+</body>
+
+</html>
